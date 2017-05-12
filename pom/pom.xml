@@ -22,6 +22,7 @@
 
     <module>../core</module>
     <module>../web</module>
+    <module>../manage</module>
   </modules>
 
   <dependencies>
@@ -113,12 +114,6 @@
       <artifactId>commons-dbcp</artifactId>
       <version>1.2.2</version>
     </dependency>
-    <!-- JSTL标签类 -->
-    <dependency>
-      <groupId>jstl</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
     <!-- 日志文件管理包 -->
     <!-- log start -->
     <dependency>
@@ -169,6 +164,18 @@
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
+    </dependency>
+    <!-- jsp Template jar -->
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.20</version>
+    </dependency>
+    <!-- apache servlet api jar -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>6.0.37</version>
     </dependency>
   </dependencies>
 </project>
