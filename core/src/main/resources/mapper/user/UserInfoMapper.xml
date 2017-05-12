@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.frame.core.mapper.user.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.frame.core.domain.user.UserInfo" >
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="simple_description" property="simpleDescription" jdbcType="VARCHAR" />
+    <result column="profession" property="profession" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="avatar_pic" property="avatarPic" jdbcType="VARCHAR" />
+    <result column="cover_url" property="coverUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.frame.core.domain.user.UserInfo" extends="BaseResultMap" >
+    <result column="user_id" property="userId" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uuid, sex, simple_description, profession, description, avatar_pic, cover_url
+  </sql>
+  <sql id="Blob_Column_List" >
+    user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_info
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_info
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.frame.core.domain.user.UserInfo" >
+    insert into user_info (uuid, sex, simple_description, 
+      profession, description, avatar_pic, 
+      cover_url, user_id)
+    values (#{uuid,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{simpleDescription,jdbcType=VARCHAR}, 
+      #{profession,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{avatarPic,jdbcType=VARCHAR}, 
+      #{coverUrl,jdbcType=VARCHAR}, #{userId,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.frame.core.domain.user.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="simpleDescription != null" >
+        simple_description,
+      </if>
+      <if test="profession != null" >
+        profession,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="avatarPic != null" >
+        avatar_pic,
+      </if>
+      <if test="coverUrl != null" >
+        cover_url,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDescription != null" >
+        #{simpleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null" >
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarPic != null" >
+        #{avatarPic,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null" >
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.frame.core.domain.user.UserInfo" >
+    update user_info
+    <set >
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDescription != null" >
+        simple_description = #{simpleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null" >
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarPic != null" >
+        avatar_pic = #{avatarPic,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null" >
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.frame.core.domain.user.UserInfo" >
+    update user_info
+    set sex = #{sex,jdbcType=INTEGER},
+      simple_description = #{simpleDescription,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      avatar_pic = #{avatarPic,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARBINARY}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.frame.core.domain.user.UserInfo" >
+    update user_info
+    set sex = #{sex,jdbcType=INTEGER},
+      simple_description = #{simpleDescription,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      avatar_pic = #{avatarPic,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
